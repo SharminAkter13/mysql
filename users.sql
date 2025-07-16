@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2025 at 06:40 AM
+-- Generation Time: Jul 16, 2025 at 08:37 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,18 +30,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `users` (
   `id` int(11) DEFAULT NULL,
   `username` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL
+  `email` varchar(30) NOT NULL,
+  `password` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`) VALUES
-(1, 'Aysha', 'aysha@gmail.com'),
-(3, 'Sakib', 'sakib@gmail.com'),
-(4, 'Ahmed', 'ahmed@gmail.com'),
-(5, 'Sara', 'sara@gmail.com');
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(1, 'Aysha', 'aysha@gmail.com', 'rshfgs123'),
+(3, 'Sakib', 'sakib@gmail.com', 'owggs123'),
+(4, 'Ahmed', 'ahmed@gmail.com', 'snhs123'),
+(5, 'Sara', 'sara@gmail.com', 'tergs123');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
