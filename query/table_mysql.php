@@ -1,7 +1,7 @@
 <?php
 
 include('php_connect.php');
-
+include('delete_field.php');
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +11,7 @@ include('php_connect.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Table</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 </head>
 <body>
@@ -24,6 +25,7 @@ include('php_connect.php');
                     <th scope="col">Purchase Price</th>
                     <th scope="col">Unit</th>
                     <th scope="col">Profit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             <?php
                 $net_profit = $profit_db->query("select * from net_profit");
@@ -36,6 +38,9 @@ include('php_connect.php');
                     <td>$purchase</td>
                     <td>$unit</td>
                     <td>$profit</td>
+                    <td>
+                        <a href='delete_field.php?deleteid=$id'><i class='bi bi-trash-fill'></i></a>
+                    </td>
                     </tr>";
                     
                     }
