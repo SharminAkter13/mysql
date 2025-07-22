@@ -25,7 +25,8 @@ include('delete_field.php');
                     <th scope="col">Purchase Price</th>
                     <th scope="col">Unit</th>
                     <th scope="col">Profit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col" colspan="2">Action</th>
+                    <th scope="col"></th>
                 </tr>
             <?php
                 $net_profit = $profit_db->query("select * from net_profit");
@@ -41,6 +42,10 @@ include('delete_field.php');
                     <td>
                         <a href='delete_field.php?deleteid=$id'><span style='display: flex; justify-content: center; align-items: center;'><i class='bi bi-trash-fill'></span></i></a>
                     </td>
+                    <td>
+                        <a href='edit-update.php?id=$id_'><span style='display: flex; justify-content: center; align-items: center;'><i class='bi bi-pencil-square'></i></span></i></a>
+                    </td>
+                    
                     </tr>";
                     
                     }
