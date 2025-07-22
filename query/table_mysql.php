@@ -39,7 +39,7 @@ include('delete_field.php');
                     <td>$unit</td>
                     <td>$profit</td>
                     <td>
-                        <a href='delete_field.php?deleteid=$id'><i class='bi bi-trash-fill'></i></a>
+                        <a href='delete_field.php?deleteid=$id'><span style='display: flex; justify-content: center; align-items: center;'><i class='bi bi-trash-fill'></span></i></a>
                     </td>
                     </tr>";
                     

@@ -39,7 +39,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
         <h2 style="text-align: center; color:black;">Insert Products Details </h2>
-    <div class="container mt-5">
+    <div class="container mt-5 bg-primary-subtle">
         <form action="" method="post">
             <fieldset>
                 <div class="mb-3">
