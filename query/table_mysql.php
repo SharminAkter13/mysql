@@ -42,7 +42,7 @@ include('php_connect.php');
             ?>
         </table>
         
-        <a href="form_insert.php"><button style="color:aliceblue;background-color:green;">Submit Data </button></a>
+        <a href="form_insert.php"><button style="color:aliceblue;background-color:green;font-weight:bold;">Submit New Data </button></a>
 
     </div>
         
