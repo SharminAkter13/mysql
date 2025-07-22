@@ -1,6 +1,41 @@
 <?php
 include('php_connect.php');
 
+if($_GET['id']){
+    $_id =$_GET['id'];
+    $read_query ="SELECT * FROM net_profit WHERE id=$_id";
+    $rquery = mysqli_query($profit_db,$read_query);
+    $data =mysqli_fetch_assoc($rquery);
+    $id =$data['id'];
+    $product =$data['pproduct'];
+    $sales =$data['psales'];
+    $purchase =$data['ppurchase'];
+    $unit =$data['punit'];
+    $profit =$data['pprofit'];
+}
+
+if (isset($_POST['submit'])) {
+    $id =$_POST['id'];
+    $product =$_POST['pproduct'];
+    $sales =$_POST['psales'];
+    $purchase =$_POST['ppurchase'];
+    $unit =$_POST['punit'];
+    $profit =$_POST['pprofit'];
+    $update_query = "UPDATE net_profit SET
+                 product='$product',
+                 sales='$sales',
+                 purchase='$purchase',
+                 unit='$unit',
+                 profit='$profit',
+            where id = '$id' ";
+    if (mysqli_query($profit_db, $update_query) == TRUE) {
+        header('location:delete_field.php');
+        echo "DATA update";
+    } else {
+        echo $sqli1 . "Data not update";
+    }
+}
+
 ?>
 
 
@@ -30,16 +65,20 @@ include('php_connect.php');
         <form action="" method="post">
             <fieldset>
                 <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label" hidden>ID</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" name="id" value="<?php echo $id?>" hidden>
+                </div>
+                <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Products</label>
                 <input type="text" class="form-control" id="formGroupExampleInput" name="pproduct" value="<?php echo $product?>">
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Sales Price</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="psales_price" value="<?php echo $sales?>" >
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="psales" value="<?php echo $sales?>" >
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Purchase Price</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="ppurchase_price"  value="<?php echo $purchase?>">
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="ppurchase"  value="<?php echo $purchase?>">
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Unit</label>
