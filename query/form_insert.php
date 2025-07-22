@@ -1,3 +1,26 @@
+<?php
+include('php_connect.php');
+
+if(isset($_POST['submit'])){
+    $pr = $_POST['pproduct'];
+    $s = $_POST['psales_price'];
+    $pp = $_POST['ppurchase_price'];
+    $u = $_POST['punit'];
+    $p = $_POST['pprofit'];
+
+
+    $query ="INSERT INTO net_profit(product,sales_price,purchase_price,unit,profit) VALUES($pr,$s, $pp, $u,$p)";
+    if(mysqli_query($profit_db,$query) == TRUE){
+        echo "DATA SUBMITED";
+        header('location:table_mysql.php');
+    }else{
+        echo "DATA NOT SUBMITED";
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,27 +44,34 @@
             <fieldset>
                 <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Products</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter Product Name">
+                <input type="text" class="form-control" id="formGroupExampleInput" name="pproduct"  placeholder="Enter Product Name">
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Sales Price</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Enter Sales Price">
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="psales_price"  placeholder="Enter Sales Price">
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Purchase Price</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Enter Purchase Price">
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="ppurchase_price"  placeholder="Enter Purchase Price">
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Unit</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Total Unit">
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="punit"  placeholder="Total Unit">
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Profit</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Profit">
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="pprofit"  placeholder="Profit">
+                </div>
+                <div class="mb-3">
+                <input type="submit" class="form-control" id="formGroupExampleInput2" name="submit" value="Submit">
                 </div>
             </fieldset>
         </form>
     </div>
+    <div>
+    <a href="form_insert.php"><button>Submit Data </button></a>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 
 </body>
