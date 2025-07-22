@@ -1,11 +1,6 @@
 <?php
-// object system 
-$host ="localhost";
-$user ="root";
-$pass ="";
-$dbname ="profit_list";
 
-$profit_db = new mysqli($host,$user,$pass,$dbname ); 
+include('php_connect.php');
 
 ?>
 
