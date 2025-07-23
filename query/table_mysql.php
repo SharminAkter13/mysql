@@ -43,7 +43,7 @@ include('delete_field.php');
                         <a href='delete_field.php?deleteid=$id'><span style='display: flex; justify-content: center; align-items: center;'><i class='bi bi-trash-fill'></span></i></a>
                     </td>
                     <td>
-                        <a href='edit-update.php?id=$id_'><span style='display: flex; justify-content: center; align-items: center;'><i class='bi bi-pencil-square'></i></span></i></a>
+                        <a href='edit-update.php?id=$id'><span style='display: flex; justify-content: center; align-items: center;'><i class='bi bi-pencil-square'></i></span></i></a>
                     </td>
                     
                     </tr>";

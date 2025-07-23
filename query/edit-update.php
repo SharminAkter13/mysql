@@ -1,38 +1,38 @@
 <?php
 include('php_connect.php');
 
-if($_GET['id']){
+if(isset($_GET['id'])){
     $_id =$_GET['id'];
     $read_query ="SELECT * FROM net_profit WHERE id=$_id";
     $rquery = mysqli_query($profit_db,$read_query);
     $data =mysqli_fetch_assoc($rquery);
     $id =$data['id'];
-    $product =$data['pproduct'];
-    $sales =$data['psales'];
-    $purchase =$data['ppurchase'];
-    $unit =$data['punit'];
-    $profit =$data['pprofit'];
+    $product =$data['products'];
+    $sales =$data['sales_price'];
+    $purchase =$data['purchase_price'];
+    $unit =$data['unit'];
+    $profit =$data['profit'];
 }
 
 if (isset($_POST['submit'])) {
     $id =$_POST['id'];
-    $product =$_POST['pproduct'];
-    $sales =$_POST['psales'];
-    $purchase =$_POST['ppurchase'];
-    $unit =$_POST['punit'];
-    $profit =$_POST['pprofit'];
-    $update_query = "UPDATE net_profit SET
-                 product='$product',
-                 sales='$sales',
-                 purchase='$purchase',
-                 unit='$unit',
-                 profit='$profit',
-            where id = '$id' ";
-    if (mysqli_query($profit_db, $update_query) == TRUE) {
-        header('location:delete_field.php');
+    $product =$_POST['products'];
+    $sales =$_POST['sales_price'];
+    $purchase =$_POST['purchase_price'];
+    $unit =$_POST['unit'];
+    $profit =$_POST['profit'];
+$update_query = "UPDATE net_profit SET
+    products='$product',
+    sales_price='$sales',
+    purchase_price='$purchase',
+    unit='$unit',
+    profit='$profit'
+    WHERE id = '$id'";
+    if(mysqli_query($profit_db, $update_query) == TRUE) {
+        header('location:table_mysql.php');
         echo "DATA update";
     } else {
-        echo $sqli1 . "Data not update";
+        echo $update_query . "Data not update";
     }
 }
 
@@ -70,23 +70,23 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Products</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" name="pproduct" value="<?php echo $product?>">
+                <input type="text" class="form-control" id="formGroupExampleInput" name="products" value="<?php echo $product?>">
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Sales Price</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="psales" value="<?php echo $sales?>" >
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="sales_price" value="<?php echo $sales?>" >
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Purchase Price</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="ppurchase"  value="<?php echo $purchase?>">
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="purchase_price"  value="<?php echo $purchase?>">
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Unit</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="punit"  value="<?php echo $unit?>" >
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="unit"  value="<?php echo $unit?>" >
                 </div>
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Profit</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="pprofit"  value="<?php echo $profit?>">
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="profit"  value="<?php echo $profit?>">
                 </div>
                 <div class="mb-3">
                 <input type="submit" class="form-control" id="formGroupExampleInput2" name="submit" value="Re-submit">
