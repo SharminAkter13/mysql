@@ -1,7 +1,6 @@
 <?php
 include('connect.php');
 
-// Fetch categories for dropdown
 $categories = $connection->query("SELECT * FROM categories");
 
 if (isset($_POST['submit'])) {
