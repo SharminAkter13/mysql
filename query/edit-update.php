@@ -1,5 +1,6 @@
 <?php
 include('php_connect.php');
+// for view/show/read data
 
 if(isset($_GET['id'])){
     $_id =$_GET['id'];
@@ -13,6 +14,9 @@ if(isset($_GET['id'])){
     $unit =$data['unit'];
     $profit =$data['profit'];
 }
+
+// for update data
+
 
 if (isset($_POST['submit'])) {
     $id =$_POST['id'];
@@ -60,8 +64,8 @@ $update_query = "UPDATE net_profit SET
 
 </head>
 <body>
-        <h2 style="text-align: center; color:black;">Insert Products Details </h2>
-    <div class="container mt-5 bg-primary-subtle">
+        <h2 style="text-align: center; color:black;">Edit Products Details </h2>
+    <div class="container mt-5 bg-primary-subtle p-5">
         <form action="" method="post">
             <fieldset>
                 <div class="mb-3">

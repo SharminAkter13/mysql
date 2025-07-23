@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FORM</title>
     <style>
         fieldset{
             border: 1px solid black !important;
@@ -39,7 +39,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
         <h2 style="text-align: center; color:black;">Insert Products Details </h2>
-    <div class="container mt-5 bg-primary-subtle">
+    <div class="container mt-5 bg-primary-subtle p-5 ">
         <form action="" method="post">
             <fieldset>
                 <div class="mb-3">
