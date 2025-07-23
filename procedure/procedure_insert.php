@@ -3,20 +3,20 @@
 include("oop_connect_php.php");
 
 if(isset($_POST['submit'])){
-    $pr = $_POST['cusername'];
-    $s = $_POST['cemail'];
-    $pp = $_POST['cpassword'];
+    $name = $_POST['cusername'];
+    $email = $_POST['cemail'];
+    $password = $_POST['cpassword'];
 
-    $link->query("call call_user('$pr','$s', '$pp')");
+    $link->query("call call_users('$name','$email', '$password')");
 
 
-    $query ="INSERT INTO net_profit(products,sales_price,purchase_price,unit,profit) VALUES('$pr','$s', '$pp')";
-    if(mysqli_query($profit_db,$query) == TRUE){
-        echo "DATA SUBMITED";
-        header('location:table_mysql.php');
-    }else{
-        echo "DATA NOT SUBMITED";
-    }
+    // $query ="INSERT INTO net_profit(products,sales_price,purchase_price,unit,profit) VALUES('$pr','$s', '$pp')";
+    // if(mysqli_query($profit_db,$query) == TRUE){
+    //     echo "DATA SUBMITED";
+    //     header('location:table_mysql.php');
+    // }else{
+    //     echo "DATA NOT SUBMITED";
+    // }
 }
 
 
@@ -44,16 +44,16 @@ if(isset($_POST['submit'])){
         <form action="" method="post">
             <fieldset>
                 <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">cusername</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" name="pproduct"  placeholder="Enter Product Name">
+                <label for="formGroupExampleInput" class="form-label">Username</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" name="cusername"  placeholder="Enter Username">
                 </div>
                 <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">cemail</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="psales_price"  placeholder="Enter Sales Price">
+                <label for="formGroupExampleInput2" class="form-label">Email</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="cemail"  placeholder="Enter Email">
                 </div>
                 <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">cpassword</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="ppurchase_price"  placeholder="Enter Purchase Price">
+                <label for="formGroupExampleInput2" class="form-label">Password</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="cpassword"  placeholder="Enter Password">
                 </div>
                 
                 <div class="mb-3">
