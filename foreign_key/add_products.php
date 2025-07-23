@@ -11,16 +11,38 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<form method="POST">
-    <input type="text" name="product_name" placeholder="Product Name" required><br>
-    <input type="number" name="price" step="0.01" placeholder="Price" required><br>
+<!-- Bootstrap CSS CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <select name="category_id" required>
-        <option value="">-- Select Category --</option>
-        <?php while ($row = $categories->fetch_assoc()): ?>
-            <option value="<?= $row['category_id'] ?>"><?= $row['category_name'] ?></option>
-        <?php endwhile; ?>
-    </select><br>
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Add New Product</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="product_name" class="form-label">Product Name</label>
+                    <input type="text" id="product_name" name="product_name" class="form-control" placeholder="Enter product name" required>
+                </div>
 
-    <button type="submit" name="submit">Add Product</button>
-</form>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price (৳)</label>
+                    <input type="number" id="price" name="price" step="0.01" class="form-control" placeholder="Enter price" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category_id" class="form-label">Category</label>
+                    <select id="category_id" name="category_id" class="form-select" required>
+                        <option value="">-- Select Category --</option>
+                        <?php while ($row = $categories->fetch_assoc()): ?>
+                            <option value="<?= $row['category_id'] ?>"><?= $row['category_name'] ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+
+                <button type="submit" name="submit" class="btn btn-success">Add Product</button>
+            </form>
+        </div>
+    </div>
+</div>
