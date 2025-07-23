@@ -19,31 +19,33 @@ include('delete_field.php');
         <h2 style="text-align: center; color:blue;">Products Profit List</h2>
         <table class="table table-primary table-striped-columns mt-5">
                 <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Products</th>
-                    <th scope="col">Sales Price</th>
-                    <th scope="col">Purchase Price</th>
-                    <th scope="col">Unit</th>
-                    <th scope="col">Profit</th>
-                    <th scope="col" colspan="2">Action</th>
-                    <th scope="col"></th>
+                    <th scope="col" class="text-center">Id</th>
+                    <th scope="col" class="text-center">Products</th>
+                    <th scope="col" class="text-center">Sales Price</th>
+                    <th scope="col" class="text-center">Purchase Price</th>
+                    <th scope="col" class="text-center">Unit</th>
+                    <th scope="col" class="text-center">Profit</th>
+                    <th scope="col" class="text-center" colspan="2">Action</th>
                 </tr>
             <?php
                 $net_profit = $profit_db->query("select * from net_profit");
                  while(list($id,$product,$sales,$purchase,$unit,$profit)=  $net_profit->fetch_row()){
      
                 echo  "<tr>
-                    <th>$id</th>
-                    <td>$product</td>
-                    <td>$sales</td>
-                    <td>$purchase</td>
-                    <td>$unit</td>
-                    <td>$profit</td>
+                    <th class='text-center'>$id</th>
+                    <td class='text-center'>$product</td>
+                    <td class='text-center'>$sales</td>
+                    <td class='text-center'>$purchase</td>
+                    <td class='text-center'>$unit</td>
+                    <td class='text-center'>$profit</td>
                     <td>
-                        <a href='delete_field.php?deleteid=$id'><span style='display: flex; justify-content: center; align-items: center;'><i class='bi bi-trash-fill'></span></i></a>
+                        <a href='delete_field.php?deleteid=$id'><span style='display: flex; justify-content: center; align-items: center;'>  <i class='bi bi-trash-fill' title='Delete'></i>
+</span></a>
+                      
                     </td>
                     <td>
-                        <a href='edit-update.php?id=$id'><span style='display: flex; justify-content: center; align-items: center;'><i class='bi bi-pencil-square'></i></span></i></a>
+                        <a href='edit-update.php?id=$id'><span style='display: flex; justify-content: center; align-items: center;'> <i class='bi bi-pencil-square' title='Edit'></i></span></i></a>
+                       
                     </td>
                     
                     </tr>";
