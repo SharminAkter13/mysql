@@ -104,7 +104,7 @@ $products = $connection->query("
     </div>
 
     <!-- Category List with Delete Option -->
-    <div class="card mt-4 shadow-sm">
+    <!-- <div class="card mt-4 shadow-sm">
         <div class="card-header bg-danger text-white">Categories (Delete to test CASCADE)</div>
         <div class="card-body">
             <ul class="list-group">
@@ -122,7 +122,7 @@ $products = $connection->query("
                 <?php endwhile; ?>
             </ul>
         </div>
-    </div>
+    </div> -->
 </div>
 </body>
 </html>

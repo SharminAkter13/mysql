@@ -13,9 +13,9 @@ if (isset($_POST['submit'])) {
 if (isset($_POST['osubmit'])) {
     $pname = $_POST['pname'];
     $price = $_POST['price'];
-    $uid = $_POST['user_id '];
+    $u_id = $_POST['user_id'];
 
-    $link->query("call call_order('$pname','$price', '$uid')");
+   $link->query("call call_order('$pname', $price, $u_id)");
 }
 
 ?>
@@ -90,7 +90,7 @@ if (isset($_POST['osubmit'])) {
                                 <input type="text" class="form-control" id="formGroupExampleInput2" name="price" placeholder="Enter Price">
                             </div>
                             <div class="mb-3">
-                                <select name="user_id " class="form-select mb-2" required>
+                                <select name="user_id" class="form-select mb-2" required>
                                     <option value="">-- Select User --</option>
                                     <?php
                                     $cats = $link->query("SELECT * FROM users");
