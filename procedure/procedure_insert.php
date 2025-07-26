@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
 if (isset($_POST['osubmit'])) {
     $pname = $_POST['pname'];
     $price = $_POST['price'];
-    $uid = $_POST['user_id'];
+    $uid = $_POST['user_id '];
 
     $link->query("call call_order('$pname','$price', '$uid')");
 }
@@ -83,20 +83,20 @@ if (isset($_POST['osubmit'])) {
                         <form action="" method="post">
                             <div class="mb-3">
                                 <label for="formGroupExampleInput" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" name="pname" placeholder="Enter Username">
+                                <input type="text" class="form-control" id="formGroupExampleInput" name="pname" placeholder="Enter product">
                             </div>
                             <div class="mb-3">
                                 <label for="formGroupExampleInput2" class="form-label">Price</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput2" name="price" placeholder="Enter Email">
+                                <input type="text" class="form-control" id="formGroupExampleInput2" name="price" placeholder="Enter Price">
                             </div>
                             <div class="mb-3">
-                                <select name="user_id" class="form-select mb-2" required>
+                                <select name="user_id " class="form-select mb-2" required>
                                     <option value="">-- Select User --</option>
                                     <?php
-                                    $cats = $link->query("SELECT * FROM orders");
+                                    $cats = $link->query("SELECT * FROM users");
                                     while ($row = $cats->fetch_assoc()):
                                     ?>
-                                        <option value="<?= $row['user_id'] ?>"><?= $row['cusername'] ?></option>
+                                        <option value="<?= $row['id'] ?>"><?= $row['email'] ?></option>
                                     <?php endwhile; ?>
                                 </select>
                             </div>
