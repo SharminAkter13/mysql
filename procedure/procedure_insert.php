@@ -2,34 +2,33 @@
 
 include("oop_connect_php.php");
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $name = $_POST['cusername'];
     $email = $_POST['cemail'];
     $password = $_POST['cpassword'];
 
     $link->query("call call_users('$name','$email', '$password')");
-
-
-    // $query ="INSERT INTO net_profit(products,sales_price,purchase_price,unit,profit) VALUES('$pr','$s', '$pp')";
-    // if(mysqli_query($profit_db,$query) == TRUE){
-    //     echo "DATA SUBMITED";
-    //     header('location:table_mysql.php');
-    // }else{
-    //     echo "DATA NOT SUBMITED";
-    // }
 }
 
+if (isset($_POST['osubmit'])) {
+    $pname = $_POST['pname'];
+    $price = $_POST['price'];
+    $uid = $_POST['user_id'];
+
+    $link->query("call call_order('$pname','$price', '$uid')");
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORM</title>
     <style>
-        fieldset{
+        fieldset {
             border: 1px solid black !important;
             padding: 30px !important;
             border-radius: 10px !important;
@@ -38,33 +37,85 @@ if(isset($_POST['submit'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 
 </head>
+
 <body>
-        <h2 style="text-align: center; color:black;">Users Details </h2>
-    <div class="container mt-5 bg-primary-subtle p-5 ">
-        <form action="" method="post">
-            <fieldset>
-                <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">Username</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" name="cusername"  placeholder="Enter Username">
+    <div class="container mt-5  p-5 ">
+        <div class="row g-4">
+            <!-- Add  Users Details -->
+            <div class="col-md-6">
+                <div class="card ">
+                    <div class="card-header text-center bg-success-subtle fw-bold text-dark">
+                        Add Users Details
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="post">
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" name="cusername" placeholder="Enter Username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput2" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput2" name="cemail" placeholder="Enter Email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput2" class="form-label">Password</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput2" name="cpassword" placeholder="Enter Password">
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="submit" class="form-control bg-success-subtle fw-bold text-dark" id="formGroupExampleInput2" name="submit" value="Submit">
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
-                <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Email</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="cemail"  placeholder="Enter Email">
+            </div>
+
+
+
+            <!-- Add  orders Details -->
+            <div class="col-md-6">
+                <div class="card ">
+                    <div class="card-header text-center bg-success-subtle fw-bold text-dark">
+                        Add Orders Details
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="post">
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" name="pname" placeholder="Enter Username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput2" class="form-label">Price</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput2" name="price" placeholder="Enter Email">
+                            </div>
+                            <div class="mb-3">
+                                <select name="user_id" class="form-select mb-2" required>
+                                    <option value="">-- Select User --</option>
+                                    <?php
+                                    $cats = $link->query("SELECT * FROM orders");
+                                    while ($row = $cats->fetch_assoc()):
+                                    ?>
+                                        <option value="<?= $row['user_id'] ?>"><?= $row['cusername'] ?></option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="submit" class="form-control bg-success-subtle fw-bold text-dark" id="formGroupExampleInput2" name="osubmit" value="Place Order">
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
-                <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Password</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="cpassword"  placeholder="Enter Password">
-                </div>
-                
-                <div class="mb-3">
-                <input type="submit" class="form-control" id="formGroupExampleInput2" name="submit" value="Submit">
-                </div>
-            </fieldset>
-        </form>
+            </div>
+
+
+        </div>
+
     </div>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 
 </body>
+
 </html>
