@@ -13,9 +13,9 @@ if (isset($_POST['submit'])) {
 if (isset($_POST['osubmit'])) {
     $pname = $_POST['pname'];
     $price = $_POST['price'];
-    $u_id = $_POST['user_id'];
+    $user_id = $_POST['user_id'];
 
-   $link->query("call call_order('$pname', $price, $u_id)");
+   $link->query("call call_order('$pname', $price, $user_id)");
 }
 
 ?>
