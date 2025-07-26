@@ -25,7 +25,7 @@ $result = $connection->query("
                     <tr>
                         <th>ID</th>
                         <th>Product</th>
-                        <th>Price (৳)</th>
+                        <th>Price </th>
                         <th>Category</th>
                         <th>Actions</th>
                     </tr>

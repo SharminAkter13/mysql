@@ -6,7 +6,7 @@ $categories = $connection->query("SELECT * FROM categories");
 if (isset($_POST['submit'])) {
     $pname = $_POST['product_name'];
     $price = $_POST['price'];
-    $cid = $_POST['category_id'];
+    $cid = $_POST['id'];
     $connection->query("INSERT INTO products (product_name, price, category_id) VALUES ('$pname', '$price', '$cid')");
 }
 ?>
@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <div class="container mt-5">
-    <div class="card shadow-sm">
+    <div class="card shadow-sm"> 
         <div class="card-header bg-success text-white">
             <h5 class="mb-0">Add New Product</h5>
         </div>
@@ -33,10 +33,10 @@ if (isset($_POST['submit'])) {
 
                 <div class="mb-3">
                     <label for="category_id" class="form-label">Category</label>
-                    <select id="category_id" name="category_id" class="form-select" required>
+                    <select id="category_id" name="id" class="form-select" required>
                         <option value="">-- Select Category --</option>
                         <?php while ($row = $categories->fetch_assoc()): ?>
-                            <option value="<?= $row['category_id'] ?>"><?= $row['category_name'] ?></option>
+                            <option value="<?= $row['id'] ?>"><?= $row['category_name'] ?></option>
                         <?php endwhile; ?>
                     </select>
                 </div>

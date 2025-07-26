@@ -18,15 +18,15 @@ if (isset($_POST['add_product'])) {
 // Delete Category
 if (isset($_GET['delete_category'])) {
     $del_id = $_GET['delete_category'];
-    $connection->query("DELETE FROM categories WHERE category_id = $del_id");
+    $connection->query("DELETE FROM categories WHERE id = $del_id");
 }
 
 // Fetch for dropdown and product list
 $categories = $connection->query("SELECT * FROM categories");
 $products = $connection->query("
-    SELECT p.product_id, p.product_name, p.price, c.category_name 
+    SELECT p.id, p.product_name, p.price, c.category_name 
     FROM products p 
-    JOIN categories c ON p.category_id = c.category_id
+    JOIN categories c ON p.category_id = c.id
 ");
 ?>
 
@@ -92,7 +92,7 @@ $products = $connection->query("
                 <tbody>
                 <?php while ($row = $products->fetch_assoc()): ?>
                     <tr>
-                        <td><?= $row['product_id'] ?></td>
+                        <td><?= $row['id'] ?></td>
                         <td><?= $row['product_name'] ?></td>
                         <td><?= $row['price'] ?></td>
                         <td><?= $row['category_name'] ?></td>
@@ -114,7 +114,7 @@ $products = $connection->query("
                 ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <?= $row['category_name'] ?>
-                        <a href="?delete_category=<?= $row['category_id'] ?>" class="btn btn-sm btn-outline-danger"
+                        <a href="?delete_category=<?= $row['id'] ?>" class="btn btn-sm btn-outline-danger"
                            onclick="return confirm('Delete this category? Products will also be deleted.')">
                             Delete
                         </a>
