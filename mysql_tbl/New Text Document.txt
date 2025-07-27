@@ -1,0 +1,35 @@
+DELIMITER $$
+
+CREATE PROCEDURE call_customer(
+    IN c_name VARCHAR(100),
+    IN c_email VARCHAR(100)
+)
+BEGIN
+    INSERT INTO customers(customer_name, email)
+    VALUES (c_name, c_email);
+END$$
+
+DELIMITER ; 
+
+
+
+
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE call_order(
+    IN bname VARCHAR(100),
+    IN pname VARCHAR(100),
+    IN pquantity INT,
+    IN pprice DECIMAL(10,2),
+    IN cid INT
+)
+BEGIN
+    INSERT INTO orders(brand_name, products_name, quantity, price, customer_id)
+    VALUES (bname, pname, pquantity, pprice, cid);
+END$$
+
+DELIMITER ;
+
