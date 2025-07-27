@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2025 at 03:02 AM
+-- Generation Time: Jul 27, 2025 at 09:20 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -62,11 +62,22 @@ INSERT INTO `customers` (`id`, `customer_name`, `email`) VALUES
 (6, 'Faisal Ahmed', 'faisal@gmail.com'),
 (7, 'Ziniya Akter', 'ziniyaakter@gmail.com'),
 (8, 'Hasan Chowdhury', 'hasan.chowdhury@gmail.com'),
-(9, 'Ishita Khan', 'ishita.khan@gmail.com'),
 (10, 'Jamal Uddin', 'jamal.uddin@gmail.com'),
 (15, 'Murtasim Khan', 'mk@gmail.com'),
 (16, 'Isha Khan', 'isha@gmail.com'),
-(21, 'Meerab Khan', 'meerab@gmail.com');
+(21, 'Meerab Khan', 'meerab@gmail.com'),
+(22, 'Rafia Hawladar', 'rafia@gmail.com'),
+(23, 'Safia Hawladar', 'safia@gmail.com');
+
+--
+-- Triggers `customers`
+--
+DELIMITER $$
+CREATE TRIGGER `delete_user` AFTER DELETE ON `customers` FOR EACH ROW BEGIN
+DELETE FROM orders WHERE customers.id = old.id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -97,10 +108,33 @@ INSERT INTO `orders` (`id`, `brand_name`, `products_name`, `quantity`, `price`, 
 (7, 'JBL', 'Bluetooth Speaker', 3, 8000.00, 2),
 (8, 'Samsung', 'Smartphone', 2, 78000.00, 4),
 (9, 'Apple', 'Tablet', 1, 95000.00, 2),
-(10, 'Canon', 'Digital Camera', 1, 55000.00, 1),
 (11, 'LG', 'Home Theater System', 1, 60000.00, 3),
 (12, 'Sony', 'Gaming Console', 1, 75000.00, 2),
-(13, 'Dell', 'laptop', 1, 60000.00, 9);
+(14, 'HP', 'Laptop', 5, 250000.00, 22);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `order_query`
+-- (See below for the actual view)
+--
+CREATE TABLE `order_query` (
+`id` int(30)
+,`brand_name` varchar(50)
+,`products_name` varchar(30)
+,`quantity` int(30)
+,`price` decimal(10,2)
+,`customer_id` int(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `order_query`
+--
+DROP TABLE IF EXISTS `order_query`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `order_query`  AS SELECT `customers`.`id` AS `id`, `customers`.`brand_name` AS `brand_name`, `customers`.`products_name` AS `products_name`, `customers`.`quantity` AS `quantity`, `customers`.`price` AS `price`, `customers`.`customer_id` AS `customer_id` FROM `orders` AS `customers` WHERE `customers`.`price` > 5000 ORDER BY `customers`.`price` ASC ;
 
 --
 -- Indexes for dumped tables
@@ -127,13 +161,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
