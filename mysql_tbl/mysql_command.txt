@@ -1,3 +1,5 @@
+****create proccedure****
+
 DELIMITER $$
 
 CREATE PROCEDURE call_customer(
@@ -33,7 +35,7 @@ END$$
 
 DELIMITER ;
 
-
+****create trigger****
 
 
 DELIMITER $$
@@ -46,3 +48,48 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
+
+****create view****
+
+
+DELIMITER $$
+
+CREATE VIEW product_view AS
+SELECT 
+    p.id,
+    p.product_name,
+    p.price,
+    p.category_id,
+    c.category_name
+FROM 
+    products p
+JOIN 
+    categories c ON p.category_id = c.id $$
+
+DELIMITER ;
+
+
+****create view with condition****
+
+DELIMITER $$
+
+CREATE VIEW new_view_table AS
+SELECT * FROM old_table
+WHERE price > 5000
+ORDER BY price $$
+
+DELIMITER ;
+
+
+
+
+****delete view****
+
+DELIMITER $$
+
+DROP VIEW IF EXISTS order_list $$
+
+DELIMITER ;
+
