@@ -1,0 +1,111 @@
+Table roles{
+  id integer [primary key]
+  name varchar
+}
+
+Table users {
+  id integer [primary key]
+  first_name varchar
+  last_name varchar
+  email varchar 
+  password varchar
+  created_at timestamp
+  role_id int [ref:> roles.id]
+}
+Table events {
+  id integer [primary key]
+  name varchar
+  location varchar
+  date timestamp
+}
+
+
+Table volunteer {
+  id integer [primary key]
+  name varchar
+  task varchar
+  password varchar
+  created_at timestamp
+  event_id int [ref:> events.id]
+  user_id int [ref:>users.id]
+}
+
+Table campaigns {
+  id integer [primary key]
+  name varchar
+  goal_amount int
+  start_date timestamp
+  end_date timestamp
+  event_id int [ref:> events.id]
+}
+Table pledges {
+  id integer [primary key]
+  name varchar
+  pledge_amount int
+  pledge_date timestamp
+  status varchar
+  donor_id int [ref:>donors.id]
+  campaign_id int [ref:>campaigns.id]
+}
+
+Table donors {
+  id integer [primary key]
+  name varchar
+  contact varchar
+  type varchar
+  user_id int [ref:>users.id]
+  pledge_id int [ref:> pledges.id]
+}
+
+Table beneficiaries {
+  id integer [primary key]
+  name varchar
+  contact varchar
+}
+
+Table funds {
+  id integer [primary key]
+  name varchar
+  status varchar
+}
+Table campaign_management {
+  id integer [primary key]
+  name varchar
+ fund_id int [ref:>funds.id]
+ user_id int [ref:>users.id]
+ beneficiary_id int [ref:>beneficiaries.id]
+}
+Table payment_methods {
+  id int [pk, increment]
+  name varchar(50) [not null]
+  type varchar
+  donor_id int [ref:>donors.id]
+}
+
+Table donations {
+  id integer [primary key]
+  name varchar
+  date timestamp
+  amount int
+  payment_id int [ref:> payment_methods.id]
+  fund_id int [ref:>funds.id]
+  donor_id int [ref:>donors.id]
+  pledge_id int [ref:>pledges.id]
+}
+
+Table transactions {
+  id integer [primary key]
+  status varchar
+  date timestamp
+  amount int
+  payment_id int [ref:> payment_methods.id]
+  donor_id int [ref:>donors.id]
+  campaign_id int [ref:>campaigns.id]
+}
+
+
+
+
+
+
+Ref: "roles"."id" < "roles"."name"
